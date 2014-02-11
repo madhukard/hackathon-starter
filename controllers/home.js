@@ -3,8 +3,16 @@
  * Home page.
  */
 
-exports.index = function(req, res) {
-  res.render('home', {
-    title: 'Home'
-  });
+var render = require('./render');
+
+exports.index = function *home() {
+	this.body = yield render('home', {
+		secrets: {
+			localAuth : 'test'
+		},
+		messages: {
+			errors: '',
+		},
+		title: 'Home'
+	});
 };

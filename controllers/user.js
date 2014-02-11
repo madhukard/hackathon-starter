@@ -1,15 +1,25 @@
 var passport = require('passport');
 var _ = require('underscore');
 var User = require('../models/User');
+var render = require('./render');
 
 /**
  * GET /login
  * Login page.
  */
 
-exports.getLogin = function(req, res) {
-  if (req.user) return res.redirect('/');
-  res.render('account/login', {
+
+exports.getLogin = function *() {
+  if (this.req.user) {
+    return this.redirect('/');
+  }
+  this.body = yield render('account/login', {
+    secrets: {
+      localAuth : 'test'
+    },
+    messages: {
+      errors: '',
+    },
     title: 'Login'
   });
 };
@@ -63,9 +73,17 @@ exports.logout = function(req, res) {
  * Signup page.
  */
 
-exports.getSignup = function(req, res) {
-  if (req.user) return res.redirect('/');
-  res.render('account/signup', {
+exports.getSignup = function *() {
+  if (this.req.user) {
+    return this.redirect('/');
+  }
+  this.body = yield render('account/signup', {
+    secrets: {
+      localAuth : 'test'
+    },
+    messages: {
+      errors: '',
+    },
     title: 'Create Account'
   });
 };

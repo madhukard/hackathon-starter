@@ -5,6 +5,17 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "koa": "~0.3.0",
+    "koa-logger": "~1.1.1",
+    "koa-route": "~1.0.2",
+    "koa-static" : "~1.4.2",
+    "co-views": "~0.1.0",
+
+    "koa-session-store": "~0.1.0",
+    "koa-session-mongoose": "~0.2.2",
+    "koa-passport": "~0.1.0",
+
+
     "async": "~0.2.10",
     "bcrypt-nodejs": "~0.0.3",
     "cheerio": "~0.13.1",

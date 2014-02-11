@@ -1,13 +1,20 @@
 var secrets = require('../config/secrets');
 var sendgrid  = require('sendgrid')(secrets.sendgrid.user, secrets.sendgrid.password);
+var render = require('./render');
 
 /**
  * GET /contact
  * Contact form page.
  */
 
-exports.getContact = function(req, res) {
-  res.render('contact', {
+exports.getContact = function *() {
+  this.body = yield render('contact', {
+    secrets: {
+      localAuth : 'test'
+    },
+    messages: {
+      errors: '',
+    },
     title: 'Contact'
   });
 };

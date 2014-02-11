@@ -13,14 +13,21 @@ var Github = require('github-api');
 var Twit = require('twit');
 var paypal = require('paypal-rest-sdk');
 var twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
+var render = require('./render');
 
 /**
  * GET /api
  * List of API examples.
  */
 
-exports.getApi = function(req, res) {
-  res.render('api/index', {
+exports.getApi = function *() {
+  this.body = yield render('api/index', {
+    secrets: {
+      localAuth : 'test'
+    },
+    messages: {
+      errors: '',
+    },
     title: 'API Browser'
   });
 };
